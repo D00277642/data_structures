@@ -1,6 +1,6 @@
 package b_list.testApps;
 
-import b_lists.utils.DynamicArray;
+import b_list.utils.DynamicArray;
 
 import java.util.Random;
 

@@ -70,6 +70,7 @@ public class DynamicArray {
         validateIndex(index);
 
         ensureCapacity();
+
 //        for (int i = size; i > index; i--) {
 //            data[i] = data[i-1];
 //        }
@@ -80,21 +81,28 @@ public class DynamicArray {
         size++;
     }
 
-    public DynamicArray subset(int startIndex, int endIndex) {
-        if (startIndex < 0 || startIndex > size) {
-            throw new IndexOutOfBoundsException("Index " + startIndex + " is outside bounds of list");
+    public int lastIndexOf(int target){
+        for (int i = size-1; i >= 0; i--) {
+            if(data[i] == target){
+                return i;
+            }
         }
+        return -1;
+    }
 
-        if (endIndex < 0 || endIndex > size) {
+    public DynamicArray subset(int startIndex, int endIndex){
+        validateIndex(startIndex);
+
+        if(endIndex < 0 | endIndex > size){
             throw new IndexOutOfBoundsException("Index " + endIndex + " is outside bounds of list");
         }
 
-        if (startIndex > endIndex) {
-            throw new IndexOutOfBoundsException("Start index cannot be greater than end index");
+        if(startIndex >= endIndex){
+            throw new IllegalArgumentException("Start index of subset (" + startIndex + ") must be less than or equal" +
+                    " to end index (" + endIndex + ")");
         }
 
         DynamicArray subset = new DynamicArray();
-
         for (int i = startIndex; i < endIndex; i++) {
             subset.add(data[i]);
         }
@@ -102,13 +110,28 @@ public class DynamicArray {
         return subset;
     }
 
-    public int lastIndexOf(int target) {
-        for (int i = size - 1; i >= 0; i--) {
-            if (data[i] == target) {
-                return i;
-            }
+    public DynamicArray altSubset(int startIndex, int endIndex){
+        validateIndex(startIndex);
+
+        if(endIndex < 0 || endIndex > size){
+            throw new IndexOutOfBoundsException("Index " + endIndex + " is outside bounds of list");
         }
 
-        return -1;
+        if(startIndex > endIndex){
+            throw new IllegalArgumentException("Start index of subset (" + startIndex + ") must be less than or equal" +
+                    " to end index (" + endIndex + ")");
+        }
+
+        DynamicArray subset = new DynamicArray();
+
+        int subsetSize = endIndex - startIndex;
+        if(subset.data.length < subsetSize){
+            subset.data = new int[subsetSize+10];
+        }
+
+        System.arraycopy(data, startIndex, subset.data, 0, subsetSize);
+        subset.size = subsetSize;
+
+        return subset;
     }
 }
