@@ -77,5 +77,41 @@ public class LinkedList {
 
             first = newNode;
         }
+        else{
+            Node prev = null;
+            Node current = first;
+
+            for (int i = 0; i < index; i++) {
+                prev = current;
+                current = current.next;
+            }
+
+            newNode.next = current;
+            prev.next = newNode;
+        }
+
+        size++;
+    }
+    public String remove(int index){
+        Node prev = null;
+        Node current = first;
+
+        String removed = current.data;
+
+        if(index == 0){
+            first = first.next;
+        } else {
+            for(int i = 0; i < index; i++){
+                prev = current;
+                current = current.next;
+            }
+
+            removed = current.data;
+            prev.next = current.next;
+        }
+
+        size--;
+
+        return removed;
     }
 }
