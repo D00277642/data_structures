@@ -1,0 +1,13 @@
+Action: Shift delete from list
+input: index (index) at which to remove value from data array
+            (array) using shift deleting
+output: value deleted
+
+set removed to array[index]
+
+for each position (i) in array starting at index up to size - 1:
+    set array[i] to array[i+1]
+
+set array[size-1] to blank (0)
+Decrease size by one
+
