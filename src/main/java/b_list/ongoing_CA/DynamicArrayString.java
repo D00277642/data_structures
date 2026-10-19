@@ -1,0 +1,23 @@
+package b_list.ongoing_CA;
+
+public class DynamicArrayString {
+    private static final int EXPANSION_MULTIPLIER = 2;
+    private int size = 0;
+    private String[] data = new String[10];
+
+    //Return the number of elements in the list.
+    public int size() {
+        return size;
+    }
+
+     //return the element at the specified index
+    public String get(int index) {
+        // Check that the index is valid
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException(
+                    "Index " + index + " is outside bounds of list");
+        }
+
+        return data[index];
+    }
+}
