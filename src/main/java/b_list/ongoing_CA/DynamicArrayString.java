@@ -128,4 +128,17 @@ public class DynamicArrayString {
         size = 0;
         data = new String[10];
     }
+
+    //Creates a new list without duplicating elements and doesn't take in any parameters
+    public DynamicArrayString deduplicate() {
+        DynamicArrayString result = new DynamicArrayString();
+
+        for (int i = 0; i < size; i++) {
+            if (result.indexOf(data[i]) == -1) {
+                result.add(data[i]);
+            }
+        }
+        return result;
+    }
+
 }
