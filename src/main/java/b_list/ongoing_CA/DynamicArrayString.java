@@ -122,4 +122,10 @@ public class DynamicArrayString {
         }
         return removedCount;
     }
+
+    //takes no parameters and resets the list to it's og settings
+    public void clear() {
+        size = 0;
+        data = new String[10];
+    }
 }
