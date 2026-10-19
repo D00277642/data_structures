@@ -103,4 +103,23 @@ public class DynamicArrayString {
         return removedElement;
     }
 
+    //Remove all occurrences of an element and return it.
+    public int removeAll(String element) {
+        if (element == null) {
+            throw new IllegalArgumentException("Element cannot be null");
+        }
+
+        int removedCount = 0;
+        int i = 0;
+
+        while (i < size) {
+            if (data[i].equals(element)) {
+                remove(i);
+                removedCount++;
+            } else {
+                i++;
+            }
+        }
+        return removedCount;
+    }
 }
