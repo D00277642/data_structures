@@ -50,4 +50,24 @@ public class DynamicArrayString {
         size++;
     }
 
+    //add an element at a specific index
+    public void add(String element, int index) {
+        if (element == null) {
+            throw new IllegalArgumentException("Element cannot be null");
+        }
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(
+                    "Index " + index + " is outside bounds of list");
+        }
+
+        ensureCapacity();
+
+        //Move elements to make space
+        for (int i = size; i > index; i--) {
+            data[i] = data[i - 1];
+        }
+
+        data[index] = element;
+        size++;
+    }
 }
