@@ -17,7 +17,17 @@ public class DynamicArrayString {
             throw new IndexOutOfBoundsException(
                     "Index " + index + " is outside bounds of list");
         }
-
         return data[index];
+    }
+
+    //find the position of an element in the list
+    public int indexOf(String target) {
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(target)) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
