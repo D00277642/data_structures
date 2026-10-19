@@ -5,12 +5,22 @@ public class DynamicArrayString {
     private int size = 0;
     private String[] data = new String[10];
 
-    //Return the number of elements in the list.
+    /**
+     * Return the number of elements in the list.
+     *
+     * @return the number of elements in the list
+     */
     public int size() {
         return size;
     }
 
-     //return the element at the specified index
+    /**
+     * Return the element at the specified index
+     *
+     * @param index the position of the element to retrieve
+     * @return the element at the specified index
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public String get(int index) {
         // Check that the index is valid
         if (index < 0 || index >= size) {
@@ -20,7 +30,12 @@ public class DynamicArrayString {
         return data[index];
     }
 
-    //find the position of an element in the list
+    /**
+     * Find the position of an element in the list
+     *
+     * @param target the String to search for
+     * @return the index of the element, or -1 if it is not found
+     */
     public int indexOf(String target) {
         for (int i = 0; i < size; i++) {
             if (data[i].equals(target)) {
@@ -30,7 +45,9 @@ public class DynamicArrayString {
         return -1;
     }
 
-    //Expand the array when it's full
+    /**
+     * Expand the array when it's full
+     */
     private void ensureCapacity() {
         if (size == data.length) {
             String[] temp = new String[data.length * EXPANSION_MULTIPLIER];
@@ -40,7 +57,12 @@ public class DynamicArrayString {
         }
     }
 
-    //Adds an element to the end of the list.
+    /**
+     * Adds an element to the end of the list.
+     *
+     * @param element the String to add
+     * @throws IllegalArgumentException if the element is null
+     */
     public void add(String element) {
         if (element == null) {
             throw new IllegalArgumentException("Element cannot be null");
@@ -50,7 +72,14 @@ public class DynamicArrayString {
         size++;
     }
 
-    //add an element at a specific index
+    /**
+     * Adds an element at a specific index, moving next elements right.
+     *
+     * @param element the String to insert
+     * @param index the position at which to insert the element
+     * @throws IllegalArgumentException if the element is null
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public void add(String element, int index) {
         if (element == null) {
             throw new IllegalArgumentException("Element cannot be null");
@@ -59,7 +88,6 @@ public class DynamicArrayString {
             throw new IndexOutOfBoundsException(
                     "Index " + index + " is outside bounds of list");
         }
-
         ensureCapacity();
 
         //Move elements to make space
@@ -71,7 +99,15 @@ public class DynamicArrayString {
         size++;
     }
 
-    //Replace an element at a certain index
+    /**
+     * Replace an element at a certain index.
+     *
+     * @param element the replacement String
+     * @param index the position of the element to replace
+     * @return the element that was replaced
+     * @throws IllegalArgumentException if the element is null
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public String set(String element, int index) {
         if (element == null) {
             throw new IllegalArgumentException("Element cannot be null");
@@ -87,7 +123,13 @@ public class DynamicArrayString {
         return oldElement;
     }
 
-    //remove an element at a certain index and return it
+    /**
+     * remove an element at a certain index and return it.
+     *
+     * @param index the position of the element to remove
+     * @return the removed element
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public String remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(
@@ -103,7 +145,13 @@ public class DynamicArrayString {
         return removedElement;
     }
 
-    //Remove all occurrences of an element and return it.
+    /**
+     * Remove all occurrences of an element and return it.
+     *
+     * @param element the String to remove
+     * @return the number of elements removed
+     * @throws IllegalArgumentException if the element is null
+     */
     public int removeAll(String element) {
         if (element == null) {
             throw new IllegalArgumentException("Element cannot be null");
@@ -123,13 +171,20 @@ public class DynamicArrayString {
         return removedCount;
     }
 
-    //takes no parameters and resets the list to it's og settings
+    /**
+     * Takes no parameters and resets the list to it's og settings
+     */
     public void clear() {
         size = 0;
         data = new String[10];
     }
 
-    //Creates a new list without duplicating elements and doesn't take in any parameters
+    /**
+     * Creates a new list and doesn't take in any parameters
+     * The original list remains unchanged.
+     *
+     * @return a new list containing no duplicate elements
+     */
     public DynamicArrayString deduplicate() {
         DynamicArrayString result = new DynamicArrayString();
 
@@ -141,7 +196,12 @@ public class DynamicArrayString {
         return result;
     }
 
-    //add all elements from the parameter list to the current list and should return nothing
+    /**
+     * Add all elements from the parameter list to the current list.
+     *
+     * @param other the list whose elements will be appended
+     * @throws IllegalArgumentException if the supplied list is null
+     */
     public void join(DynamicArrayString other) {
         if (other == null) {
             throw new IllegalArgumentException("List can't be null");
