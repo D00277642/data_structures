@@ -86,4 +86,21 @@ public class DynamicArrayString {
 
         return oldElement;
     }
+
+    //remove an element at a certain index and return it
+    public String remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException(
+                    "Index " + index + " is outside bounds of list");
+        }
+
+        String removedElement = data[index];
+        for (int i = index; i < size - 1; i++) {
+            data[i] = data[i + 1];
+        }
+
+        size--;
+        return removedElement;
+    }
+
 }
