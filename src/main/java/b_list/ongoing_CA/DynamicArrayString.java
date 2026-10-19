@@ -70,4 +70,20 @@ public class DynamicArrayString {
         data[index] = element;
         size++;
     }
+
+    //Replace an element at a certain index
+    public String set(String element, int index) {
+        if (element == null) {
+            throw new IllegalArgumentException("Element cannot be null");
+        }
+
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException(
+                    "Index " + index + " is outside bounds of list");
+        }
+        String oldElement = data[index];
+        data[index] = element;
+
+        return oldElement;
+    }
 }
