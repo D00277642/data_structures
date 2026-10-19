@@ -141,4 +141,14 @@ public class DynamicArrayString {
         return result;
     }
 
+    //add all elements from the parameter list to the current list and should return nothing
+    public void join(DynamicArrayString other) {
+        if (other == null) {
+            throw new IllegalArgumentException("List can't be null");
+        }
+        for (int i = 0; i < other.size(); i++) {
+            add(other.get(i));
+        }
+    }
+
 }
