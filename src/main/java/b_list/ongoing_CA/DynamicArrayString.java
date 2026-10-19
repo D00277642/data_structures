@@ -27,7 +27,27 @@ public class DynamicArrayString {
                 return i;
             }
         }
-
         return -1;
     }
+
+    //Expand the array when it's full
+    private void ensureCapacity() {
+        if (size == data.length) {
+            String[] temp = new String[data.length * EXPANSION_MULTIPLIER];
+            //Copy the existing elements
+            System.arraycopy(data, 0, temp, 0, data.length);
+            data = temp;
+        }
+    }
+
+    //Adds an element to the end of the list.
+    public void add(String element) {
+        if (element == null) {
+            throw new IllegalArgumentException("Element cannot be null");
+        }
+        ensureCapacity();
+        data[size] = element;
+        size++;
+    }
+
 }
