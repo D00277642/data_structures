@@ -1,6 +1,6 @@
 package b_list.ongoing_CA;
 
-public class DynamicArrayString {
+public class DynamicArray {
     private static final int EXPANSION_MULTIPLIER = 2;
     private int size = 0;
     private String[] data = new String[10];
@@ -185,8 +185,8 @@ public class DynamicArrayString {
      *
      * @return a new list containing no duplicate elements
      */
-    public DynamicArrayString deduplicate() {
-        DynamicArrayString result = new DynamicArrayString();
+    public DynamicArray deduplicate() {
+        DynamicArray result = new DynamicArray();
 
         for (int i = 0; i < size; i++) {
             if (result.indexOf(data[i]) == -1) {
@@ -202,7 +202,7 @@ public class DynamicArrayString {
      * @param other the list whose elements will be appended
      * @throws IllegalArgumentException if the supplied list is null
      */
-    public void join(DynamicArrayString other) {
+    public void join(DynamicArray other) {
         if (other == null) {
             throw new IllegalArgumentException("List can't be null");
         }
