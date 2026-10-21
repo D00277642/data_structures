@@ -1,4 +1,4 @@
-package b_lists.utils;
+package b_list.utils;
 
 public class IntDynamicArray {
     private static final int EXPANSION_MULTIPLIER = 2;
