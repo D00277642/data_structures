@@ -108,12 +108,69 @@ public class LinkedList {
 
         Node current = first;
         for (int i = 0; i < size; i++) {
-            if(current.data.equals(target)){
+            if(current.data.equalsIgnoreCase(target)){
                 return i;
             }
             current = current.next;
         }
         return -1;
+    }
+
+    public boolean removeElement(String target){
+        int index = indexOf(target);
+        if(index == -1){
+            return false;
+        }
+
+        remove(index);
+        return true;
+    }
+
+    public boolean remove(String target){
+        validateForNull(target);
+
+        if(isEmpty()){
+            return false;
+        }
+
+        if(target.equals(first.data)){
+            first = first.next;
+
+            if(first == null){
+                last = null;
+            }
+        }else{
+            // Handle where edit is in remainder of list
+            Node current = first;
+            Node prev = null;
+
+            boolean found = false;
+            for (int i = 0; i < size; i++) {
+                if(target.equals(current.data)){
+                    found = true;
+                    break;
+                }else{
+                    prev = current;
+                    current = current.next;
+                }
+            }
+
+            if(!found){
+                return false;
+            }
+
+            // Delete element from list
+            prev.next = current.next;
+            // If element to be deleted is at end of list, update last to the one before current
+            // (i.e. the one before the deleted element)
+            if(current == last) {
+                last = prev;
+            }
+        }
+
+        // Final clean up - reduce size and return removed element
+        size--;
+        return true;
     }
 
     private static void validateForNull(String target) {
